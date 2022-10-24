@@ -8,9 +8,9 @@ final class IcnsParser
 {
     private const HEADER_MAGIC = 'icns';
 
-    public function parse(string $path): Icns
+    public function parse(string|resource $target): Icns
     {
-        $stream = Stream::fromPath($path);
+        $stream = Stream::from($target);
         if ($stream->read(4) !== self::HEADER_MAGIC) {
             throw new \InvalidArgumentException('Invalid file');
         }
