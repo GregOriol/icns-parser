@@ -8,7 +8,7 @@ final class IcnsParser
 {
     private const HEADER_MAGIC = 'icns';
 
-    public function parse(string|resource $target): Icns
+    public function parse(mixed $target): Icns
     {
         $stream = Stream::from($target);
         if ($stream->read(4) !== self::HEADER_MAGIC) {
