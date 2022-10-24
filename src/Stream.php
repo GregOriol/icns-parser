@@ -23,14 +23,16 @@ final class Stream
         $this->stream = $stream;
     }
 
-    public static function from(string|resource $target): self
-    {
-        if (is_resource($target)) {
-            return new self($target);
-        } else if is_string($target) {
-            return self::fromPath($target);
+    public static function from(mixed $target): self
+        {
+            if (is_resource($target)) {
+                return new self($target);
+            } else if (is_string($target)) {
+                return self::fromPath($target);
+            } else {
+                throw new \InvalidArgumentException('Not a valid target');
+            }
         }
-    }
 
     public static function fromPath(string $path): self
     {
